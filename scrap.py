@@ -38,6 +38,7 @@ for tag in a_tag:
     final = ""
     content = ""
     for d in data1 :
+	content = "" 
         head = "<div class=\"head\">"+d.span.contents[0].string + d.span.contents[1].string+"</div>"
         table_tag = d.find_all('table',class_='CollapsiblePanelContent')
         class_name = table_tag[0].tr.find('tr')['class'][0]
@@ -45,6 +46,7 @@ for tag in a_tag:
         div = table_tag[0].find_all('td',id="data")
         for t1,t2 in zip(tr1,div):
             content =str(content)+ "<div class=\"subhead\">"+str(t1.div.a.contents[0].string)+"</div>"+str(t2)
+		
         final =str(final) + str(head)+str(content)
     sql = "INSERT INTO SHITDATA(country_id, country,data) values(%s,%s,%s)"
     cur.execute(sql,(url,country,final))
